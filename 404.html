@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NBA Minigames</title>
+  <script>
+    // Anything that isn't a real page lands here. /nba-minigames/stat.html
+    // (wrong capitals) goes to the same page on the real site; anything else
+    // goes to the home page.
+    (function () {
+      var m = /^\/nba-minigames(\/.*)?$/i.exec(location.pathname);
+      var rest = m && m[1] ? m[1].toLowerCase() : "/";
+      location.replace("/NBA-Minigames" + rest + location.search + location.hash);
+    })();
+  </script>
+</head>
+<body>
+  <p><a href="/NBA-Minigames/">NBA Minigames →</a></p>
+</body>
+</html>
