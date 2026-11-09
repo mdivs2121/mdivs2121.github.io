@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightline Plumbing & Drain</title>
+<meta name="description" content="Owner-operated plumbing and drain service in Dutchess County. Upfront prices, same-day visits, and the owner answers the phone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2742; --navy-2: #173a61; --ink: #1a2433; --body: #3d4a5c; --muted: #6b7789;
+    --line: #e1e6ec; --soft: #f6f8fa; --tint: #eef3f9; --accent: #e8621c; --accent-dark: #c9520f;
+    --ok: #1d7a4c; --err: #b3341b; --radius: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Libre Franklin", system-ui, -apple-system, sans-serif; font-size: 16.5px; line-height: 1.65; color: var(--body); background: #fff;
+         -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { color: var(--ink); line-height: 1.15; letter-spacing: -.015em; }
+  a { color: inherit; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  .label { font-size: 13.5px; font-weight: 600; color: var(--accent-dark); margin-bottom: 10px; }
+  h2.title { font-size: clamp(28px, 3.2vw, 36px); font-weight: 700; }
+  .intro { max-width: 36em; margin-top: 12px; color: var(--muted); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; font: 600 16px "Libre Franklin", sans-serif;
+         padding: 13px 22px; border-radius: 6px; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background .15s; }
+  .btn svg { width: 17px; height: 17px; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-ghost { border-color: #c8d1dc; color: var(--ink); background: #fff; }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  .demo { background: #fff6d6; color: #6a5300; text-align: center; font-size: 12.5px; padding: 6px 12px; }
+  .topbar { background: var(--navy); color: #b9c8dc; font-size: 13.5px; }
+  .topbar .wrap { display: flex; justify-content: space-between; gap: 12px; padding-top: 7px; padding-bottom: 7px; flex-wrap: wrap; }
+  .topbar a { color: #fff; font-weight: 600; text-decoration: none; }
+
+  header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 74px; }
+  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brand svg { width: 34px; height: 34px; flex: none; }
+  .brand strong { display: block; font-size: 19px; font-weight: 800; color: var(--navy); letter-spacing: -.02em; line-height: 1.1; }
+  .brand small { display: block; font-size: 12.5px; color: var(--muted); }
+  nav { display: flex; gap: 28px; font-size: 15px; font-weight: 500; }
+  nav a { text-decoration: none; color: var(--body); }
+  nav a:hover { color: var(--navy); }
+  .head-right { display: flex; align-items: center; gap: 18px; }
+  .head-phone { text-decoration: none; text-align: right; line-height: 1.2; }
+  .head-phone small { display: block; font-size: 12px; color: var(--muted); }
+  .head-phone b { font-size: 17px; color: var(--navy); }
+
+  .hero { background: linear-gradient(180deg, var(--tint) 0%, #fff 100%); padding: 72px 0 80px; border-bottom: 1px solid var(--line); }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: start; }
+  h1 { font-size: clamp(36px, 4.6vw, 54px); font-weight: 800; letter-spacing: -.03em; line-height: 1.06; color: var(--navy); }
+  .hero p.lead { font-size: 18.5px; margin: 20px 0 28px; max-width: 31em; }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .creds { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 28px; margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .creds div { font-size: 14px; color: var(--muted); line-height: 1.35; }
+  .creds b { display: block; font-size: 22px; color: var(--navy); font-weight: 700; letter-spacing: -.02em; }
+  .stars { color: #f0a020; letter-spacing: 1px; }
+
+  form { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 30px; box-shadow: 0 18px 50px rgba(15, 39, 66, .10); }
+  form h2 { font-size: 22px; font-weight: 700; }
+  form .sub { color: var(--muted); font-size: 15px; margin: 4px 0 6px; }
+  label { display: block; font-weight: 600; font-size: 13.5px; color: var(--ink); margin: 14px 0 6px; }
+  label i { font-style: normal; font-weight: 400; color: var(--muted); }
+  input, select, textarea { width: 100%; font: 15.5px "Libre Franklin", sans-serif; padding: 11px 12px; border: 1px solid #ccd5df; border-radius: 6px;
+                            background: #fff; color: var(--ink); transition: border-color .15s, box-shadow .15s; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy-2); box-shadow: 0 0 0 3px rgba(23, 58, 97, .15); }
+  textarea { min-height: 84px; resize: vertical; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .hp { position: absolute; left: -9999px; }
+  form .btn { width: 100%; margin-top: 18px; padding: 14px; }
+  .msg { margin-top: 12px; padding: 11px 13px; font-size: 14.5px; display: none; border-radius: 6px; }
+  .msg.ok { display: block; background: #e7f4ec; color: var(--ok); }
+  .msg.err { display: block; background: #fbeae6; color: var(--err); }
+  .fine { font-size: 13px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 44px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .svc { padding: 30px 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+  .svc svg { width: 30px; height: 30px; stroke: var(--navy-2); fill: none; stroke-width: 1.6; margin-bottom: 16px; }
+  .svc h3 { font-size: 18.5px; font-weight: 700; }
+  .svc p { font-size: 15px; color: var(--muted); margin: 8px 0 14px; }
+  .svc .price { font-size: 14px; color: var(--ink); font-weight: 600; }
+
+  .about { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .about .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: center; }
+  .portrait { aspect-ratio: 4 / 5; border-radius: 10px; background: linear-gradient(160deg, #dfe6ef, #cdd7e3); position: relative; overflow: hidden; }
+  .portrait span { position: absolute; left: 16px; bottom: 14px; font-size: 13px; color: #56657a; background: rgba(255,255,255,.75); padding: 4px 10px; border-radius: 4px; }
+  .about blockquote { font-size: 22px; line-height: 1.45; color: var(--ink); font-weight: 500; letter-spacing: -.01em; margin: 18px 0 14px; }
+  .about cite { font-style: normal; font-size: 15px; color: var(--muted); }
+  .commit { list-style: none; padding: 0; margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+  .commit li { padding-left: 28px; position: relative; font-size: 15.5px; }
+  .commit li::before { content: ""; position: absolute; left: 0; top: 4px; width: 17px; height: 17px; border-radius: 50%; background: var(--navy);
+                       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='10'/%3E%3C/svg%3E"); }
+  .commit li::after { content: ""; position: absolute; left: 5.5px; top: 7.5px; width: 6px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .commit b { color: var(--ink); }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 44px; counter-reset: s; }
+  .step { border-top: 2px solid var(--navy); padding-top: 18px; }
+  .step::before { counter-increment: s; content: "0" counter(s); display: block; font-size: 13px; font-weight: 700; color: var(--accent-dark); margin-bottom: 8px; }
+  .step h3 { font-size: 17.5px; font-weight: 700; }
+  .step p { font-size: 15px; color: var(--muted); margin-top: 6px; }
+
+  .reviews-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+  .score { display: flex; align-items: center; gap: 14px; }
+  .score b { font-size: 44px; font-weight: 800; color: var(--navy); letter-spacing: -.03em; line-height: 1; }
+  .score small { display: block; color: var(--muted); font-size: 13.5px; }
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .rev { border: 1px solid var(--line); border-radius: 10px; padding: 26px; }
+  .rev p { margin: 12px 0 18px; color: var(--ink); }
+  .rev .who { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .rev .who span { display: block; font-weight: 400; color: var(--muted); }
+
+  .info { background: var(--soft); border-top: 1px solid var(--line); }
+  .info .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .info h3 { font-size: 17.5px; font-weight: 700; margin-bottom: 12px; }
+  .info p, .info li { font-size: 15.5px; }
+  .info ol { padding-left: 20px; }
+  .info li { margin-bottom: 6px; }
+  .hours { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  .hours td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .hours td:last-child { text-align: right; color: var(--ink); font-weight: 500; }
+  .towns { columns: 2; list-style: none; padding: 0 !important; }
+
+  .cta { background: var(--navy); color: #c8d5e6; padding: 64px 0; }
+  .cta .wrap { display: flex; justify-content: space-between; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .cta h2 { color: #fff; font-size: clamp(26px, 3vw, 34px); font-weight: 700; }
+  .cta p { margin-top: 6px; }
+  .cta .btn-ghost { background: transparent; color: #fff; border-color: #4a6283; }
+  .cta .btn-ghost:hover { border-color: #fff; }
+
+  footer { background: #0a1b2f; color: #8fa1b8; font-size: 14px; padding: 44px 0 36px; }
+  footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  footer h4 { color: #fff; font-size: 14.5px; margin-bottom: 10px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: #fff; }
+  .legal { grid-column: 1 / -1; border-top: 1px solid #1f3350; padding-top: 18px; margin-top: 10px; font-size: 13px; }
+
+  .mobile-bar { display: none; }
+
+  /* rating badge */
+  .badge { display: inline-flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: 999px;
+           padding: 6px 16px 6px 6px; margin-bottom: 22px; box-shadow: 0 4px 14px rgba(15,39,66,.06); font-size: 14px; color: var(--muted); }
+  .avatars { display: flex; }
+  .avatars span { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #fff; margin-left: -8px; display: grid; place-items: center;
+                  font-size: 11px; font-weight: 700; color: #fff; }
+  .avatars span:first-child { margin-left: 0; }
+  .badge b { color: var(--ink); }
+
+  /* town marquee */
+  .marquee { border-bottom: 1px solid var(--line); background: #fff; overflow: hidden; padding: 18px 0; }
+  .marquee .lbl { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+  .track span { font-size: 17px; font-weight: 600; color: #8492a6; padding: 0 28px; white-space: nowrap; }
+  .track span::after { content: "·"; margin-left: 56px; color: #c3ccd7; }
+  .marquee:hover .track { animation-play-state: paused; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* stats */
+  .stats { background: var(--navy); color: #c8d5e6; padding: 72px 0; }
+  .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .stats b { display: block; font-size: clamp(40px, 5vw, 56px); font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1; margin-bottom: 10px; }
+  .stats small { display: block; font-size: 12px; color: #7f93ad; margin-top: 4px; }
+
+  /* comparison */
+  .compare { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 40px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .compare th, .compare td { padding: 16px 22px; text-align: left; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .compare tr:last-child td { border-bottom: 0; }
+  .compare thead th { background: var(--soft); font-size: 14px; color: var(--muted); font-weight: 600; }
+  .compare thead th.us { background: var(--navy); color: #fff; }
+  .compare td:first-child { color: var(--ink); font-weight: 600; width: 30%; }
+  .compare td.us { background: #f3f7fc; color: var(--ink); font-weight: 500; }
+  .compare td.us::before { content: "✓"; color: var(--ok); font-weight: 800; margin-right: 8px; }
+  .compare td.them { color: var(--muted); }
+
+  /* faq */
+  .faq { max-width: 820px; margin-top: 36px; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; padding: 20px 40px 20px 0; font-size: 17px; font-weight: 600; color: var(--ink); position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: 4px; top: 16px; font-size: 24px; font-weight: 400; color: var(--muted); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { padding: 0 40px 20px 0; color: var(--body); }
+
+  /* scroll reveal: only when JS is on and the visitor hasn't asked for reduced motion */
+  .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+  }
+
+  @media (max-width: 960px) {
+    nav, .head-right .btn { display: none; }
+    .hero .wrap, .about .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .services, .reviews { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .info .wrap { grid-template-columns: 1fr; }
+    .stats .wrap { grid-template-columns: 1fr 1fr; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+    .portrait { max-height: 380px; aspect-ratio: auto; height: 380px; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 64px 0; }
+    .hero { padding: 44px 0 56px; }
+    .services, .reviews, .steps, .commit { grid-template-columns: 1fr; }
+    .creds { grid-template-columns: 1fr 1fr; gap: 18px; }
+    .row { grid-template-columns: 1fr; }
+    .compare th, .compare td { padding: 12px 12px; font-size: 14px; }
+    .head-phone small { display: none; }
+    footer { padding-bottom: 96px; }
+    footer .wrap { grid-template-columns: 1fr; }
+    .mobile-bar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+                  border-top: 1px solid var(--line); background: #fff; padding: 10px 12px; gap: 10px; box-shadow: 0 -6px 18px rgba(15,39,66,.08); }
+    .mobile-bar .btn { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></symbol>
+</svg>
+
+<div class="demo">Demo website · Brightline Plumbing &amp; Drain is a sample business</div>
+<div class="topbar"><div class="wrap">
+  <span>Serving Poughkeepsie and the mid-Hudson Valley since 2010</span>
+  <span>24/7 emergency line: <a href="tel:5550142290">(555) 014-2290</a></span>
+</div></div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 34 34"><rect width="34" height="34" rx="7" fill="#0f2742"/><path d="M17 7.5s-6.5 7.2-6.5 11.6a6.5 6.5 0 0 0 13 0C23.5 14.7 17 7.5 17 7.5z" fill="#fff"/><path d="M14 19.5a3 3 0 0 0 3 3" stroke="#0f2742" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <span><strong>Brightline</strong><small>Plumbing &amp; Drain</small></span>
+    </a>
+    <nav><a href="#services">Services</a><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#contact">Service area</a></nav>
+    <div class="head-right">
+      <a class="head-phone" href="tel:5550142290"><small>Call or text</small><b>(555) 014-2290</b></a>
+      <a class="btn btn-primary" href="#quote-form">Request service</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="badge"><span class="avatars"><span style="background:#173a61">JR</span><span style="background:#e8621c">MK</span><span style="background:#1d7a4c">AT</span><span style="background:#6b4fa0">SL</span></span>
+        <span><b>4.9</b> <span class="stars">★★★★★</span> from 300+ local homeowners <i style="font-style:normal">(sample)</i></span></div>
+      <h1>Plumbing done right, by the owner himself.</h1>
+      <p class="lead">Brightline is a licensed, owner-operated plumbing company. You'll speak with Dan when you call, get a firm price before any work begins, and have the job done by the person who quoted it.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="tel:5550142290"><svg><use href="#i-phone"/></svg>Call (555) 014-2290</a>
+        <a class="btn btn-ghost" href="#services">View services &amp; pricing</a>
+      </div>
+      <div class="creds">
+        <div><b>4.9 <span class="stars">★★★★★</span></b>Average rating (sample)</div>
+        <div><b>Same day</b>For most calls before noon</div>
+        <div><b>1 year</b>Guarantee on all labor</div>
+      </div>
+    </div>
+
+    <form id="quote-form" novalidate>
+      <h2>Request service</h2>
+      <p class="sub">We'll confirm by email right away and call you back with a time and a price.</p>
+      <div class="row">
+        <div><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+        <div><label for="phone">Phone <i>(optional)</i></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required>
+      <label for="service">Service needed</label>
+      <select id="service" name="service">
+        <option>Leak or burst pipe</option><option>Clogged drain</option><option>Water heater</option>
+        <option>Toilet or fixture</option><option>Main line backup</option><option>Inspection</option><option>Something else</option>
+      </select>
+      <label for="message">Details <i>(optional)</i></label>
+      <textarea id="message" name="message" placeholder="Briefly describe the problem"></textarea>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-primary" type="submit" id="send">Send request</button>
+      <div class="msg" id="msg" role="status"></div>
+      <p class="fine">For active leaks or flooding, please call (555) 014-2290.</p>
+    </form>
+  </div>
+</div>
+
+<div class="marquee" aria-label="Towns we serve">
+  <div class="lbl">Proudly serving homeowners across the mid-Hudson Valley</div>
+  <div class="track">
+    <span>Poughkeepsie</span><span>Hyde Park</span><span>Wappingers Falls</span><span>Pleasant Valley</span><span>LaGrange</span><span>Fishkill</span><span>Highland</span><span>Red Hook</span><span>Rhinebeck</span><span>Beacon</span>
+    <span aria-hidden="true">Poughkeepsie</span><span aria-hidden="true">Hyde Park</span><span aria-hidden="true">Wappingers Falls</span><span aria-hidden="true">Pleasant Valley</span><span aria-hidden="true">LaGrange</span><span aria-hidden="true">Fishkill</span><span aria-hidden="true">Highland</span><span aria-hidden="true">Red Hook</span><span aria-hidden="true">Rhinebeck</span><span aria-hidden="true">Beacon</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="label">Services</div>
+    <h2 class="title">Residential plumbing, start to finish</h2>
+    <p class="intro">Typical starting prices are listed so you know what to expect. Every job is quoted in full before work begins.</p>
+    <div class="services">
+      <div class="svc"><svg viewBox="0 0 32 32"><path d="M4 12h16v6H4zM20 15h8M9 18v5M15 18v5"/><path d="M12 28c0-1.5 1-2.5 1-3.5"/></svg>
+        <h3>Leak repair</h3><p>Supply lines, shutoff valves, under-sink and exposed pipe, located and repaired before it causes damage.</p><div class="price">From $149</div></div>
+      <div class="svc"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="3"/><path d="M16 6v7M16 19v7M6 16h7M19 16h7"/></svg>
+        <h3>Drain cleaning</h3><p>Kitchen, bath and laundry lines cleared, with camera inspection for recurring clogs.</p><div class="price">From $129</div></div>
+      <div class="svc"><svg viewBox="0 0 32 32"><rect x="9" y="3" width="14" height="26" rx="3"/><path d="M13 21c0-2 3-3 3-6 0 3 3 4 3 6a3 3 0 0 1-6 0z"/></svg>
+        <h3>Water heaters</h3><p>Repair and replacement of tank and tankless units, with same-day installs for common tank sizes.</p><div class="price">From $189</div></div>
+      <div class="svc"><svg viewBox="0 0 32 32"><path d="M8 5h10v7H8zM6 12h20a7 7 0 0 1-7 7h-6a7 7 0 0 1-7-7zM12 19l-1 8h10l-1-8"/></svg>
+        <h3>Toilets &amp; fixtures</h3><p>Running or leaking toilets, faucets, garbage disposals and fixture replacements.</p><div class="price">From $119</div></div>
+      <div class="svc"><svg viewBox="0 0 32 32"><path d="M3 21h26M6 21v-9h20v9M11 12V7h10v5M15 21v8h2v-8"/></svg>
+        <h3>Main line service</h3><p>Backups in multiple drains, root intrusion and sewer line clearing, with video verification.</p><div class="price">From $249</div></div>
+      <div class="svc"><svg viewBox="0 0 32 32"><path d="M16 3 6 7v7c0 7 4 11 10 14 6-3 10-7 10-14V7z"/><path d="m12 16 3 3 6-6"/></svg>
+        <h3>Inspections</h3><p>Pre-purchase and preventive plumbing inspections with a written summary of findings.</p><div class="price">From $99</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div><b data-count="2400" data-suffix="+">0</b>Jobs completed<small>sample figure</small></div>
+    <div><b data-count="94" data-suffix="%">0</b>Same- or next-day visits<small>sample figure</small></div>
+    <div><b data-count="15">0</b>Years in business<small>sample figure</small></div>
+    <div><b data-count="1" data-suffix=" yr">0</b>Guarantee on every repair<small>on all labor</small></div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="portrait"><span>Owner photo</span></div>
+    <div>
+      <div class="label">About Brightline</div>
+      <h2 class="title">A small company, run the way it should be.</h2>
+      <blockquote>"I started Brightline so customers would always know who's coming to their home. I answer the phone, I quote the job, and I do the work."</blockquote>
+      <cite>Dan M., Owner &amp; Licensed Master Plumber</cite>
+      <ul class="commit">
+        <li><b>Firm pricing.</b> The quote is the price.</li>
+        <li><b>On time.</b> Two-hour arrival windows, with a text when we're on the way.</li>
+        <li><b>Clean work.</b> Floors covered, old parts removed.</li>
+        <li><b>Guaranteed.</b> One year on all labor.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="label">How it works</div>
+    <h2 class="title">What to expect</h2>
+    <div class="steps">
+      <div class="step"><h3>Request service</h3><p>Call, or use the form. Online requests get an instant email confirmation.</p></div>
+      <div class="step"><h3>Schedule a visit</h3><p>We call back, usually within the hour, with an arrival window.</p></div>
+      <div class="step"><h3>Approve the price</h3><p>We diagnose the problem and give you a firm quote before starting.</p></div>
+      <div class="step"><h3>Work completed</h3><p>The job is finished, cleaned up and covered by our one-year guarantee.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="label">Why Brightline</div>
+    <h2 class="title">The difference of working with the owner</h2>
+    <table class="compare">
+      <thead><tr><th></th><th class="us">Brightline</th><th>Typical large plumbing company</th></tr></thead>
+      <tbody>
+        <tr><td>Who answers the phone</td><td class="us">The owner</td><td class="them">A call center or dispatcher</td></tr>
+        <tr><td>Who does the work</td><td class="us">The person who quoted it</td><td class="them">Whichever technician is free</td></tr>
+        <tr><td>Pricing</td><td class="us">Firm quote before work starts</td><td class="them">Estimates that can change on site</td></tr>
+        <tr><td>Arrival</td><td class="us">Two-hour window + on-the-way text</td><td class="them">All-day windows</td></tr>
+        <tr><td>Online requests</td><td class="us">Instant email confirmation</td><td class="them">Wait and hope someone calls</td></tr>
+        <tr><td>Guarantee</td><td class="us">One year on all labor</td><td class="them">Often 30–90 days</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div><div class="label">Reviews</div><h2 class="title">What our customers say</h2></div>
+      <div class="score"><b>4.9</b><div><span class="stars">★★★★★</span><small>Sample rating for this demo</small></div></div>
+    </div>
+    <div class="reviews">
+      <div class="rev"><span class="stars">★★★★★</span><p>Sample review: Called in the morning and he was here by early afternoon. The price he quoted was exactly what I paid.</p><div class="who">Sample customer<span>Town of Poughkeepsie</span></div></div>
+      <div class="rev"><span class="stars">★★★★★</span><p>Sample review: Our water heater failed on a Saturday. It was replaced the same day and the old unit was hauled away.</p><div class="who">Sample customer<span>Hyde Park</span></div></div>
+      <div class="rev"><span class="stars">★★★★★</span><p>Sample review: I submitted the form at night, got a confirmation email immediately, and a call first thing the next morning.</p><div class="who">Sample customer<span>Wappingers Falls</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="label">FAQ</div>
+    <h2 class="title">Common questions</h2>
+    <div class="faq">
+      <details><summary>Do you charge a trip fee?</summary><p>No trip charge when we do the repair. If you decide not to go ahead after the diagnosis, there's a flat $79 service call.</p></details>
+      <details><summary>How fast can you come out?</summary><p>Most calls received before noon get a same-day visit. Emergencies like active leaks or no water are prioritized, including evenings and weekends.</p></details>
+      <details><summary>Will the price change once you start?</summary><p>No. We diagnose the problem first and give you a firm price. If we find something else while working, we stop and ask before doing anything extra.</p></details>
+      <details><summary>Are you licensed and insured?</summary><p>Yes. Brightline is fully licensed and insured, and we're happy to send proof before your appointment.</p></details>
+      <details><summary>What payment methods do you accept?</summary><p>Cash, check, Zelle and all major credit cards, paid when the job is done.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="contact">
+  <div class="wrap">
+    <div>
+      <h3>Service area</h3>
+      <ul class="towns"><li>Poughkeepsie</li><li>Hyde Park</li><li>Wappingers Falls</li><li>Pleasant Valley</li><li>LaGrange</li><li>Fishkill</li><li>Highland</li><li>Red Hook</li></ul>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <table class="hours">
+        <tr><td>Monday – Friday</td><td>7am – 7pm</td></tr>
+        <tr><td>Saturday</td><td>8am – 4pm</td></tr>
+        <tr><td>Sunday</td><td>Emergencies only</td></tr>
+        <tr><td>Emergency line</td><td>24/7</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Have an active leak?</h3>
+      <ol>
+        <li>Close the shutoff valve under the fixture, or the main water valve.</li>
+        <li>If the leak is near the water heater, turn the heater off.</li>
+        <li>Call us at <a href="tel:5550142290"><b>(555) 014-2290</b></a>.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <div><h2>Need a plumber today?</h2><p>Most calls received before noon are scheduled the same day.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="tel:5550142290"><svg><use href="#i-phone"/></svg>(555) 014-2290</a>
+      <a class="btn btn-ghost" href="#quote-form">Request service online</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div><h4>Brightline Plumbing &amp; Drain</h4>Licensed and insured residential plumbing for Dutchess County.<br>License #PL-000000</div>
+    <div><h4>Contact</h4><a href="tel:5550142290">(555) 014-2290</a><br><a href="#quote-form">Request service</a></div>
+    <div><h4>Services</h4>Leak repair<br>Drain cleaning<br>Water heaters</div>
+    <div><h4>Payment</h4>Cash, check, Zelle,<br>and all major cards</div>
+    <div class="legal">© Brightline Plumbing &amp; Drain · Demo website</div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn btn-primary" href="tel:5550142290"><svg><use href="#i-phone"/></svg>Call</a>
+  <a class="btn btn-ghost" href="#quote-form">Request service</a>
+</div>
+
+<script>
+  // Scroll animations: fade sections up as they enter the screen, count up the stats.
+  // Skipped entirely for visitors whose system asks for reduced motion.
+  (function () {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const groups = [".hero .wrap > *", "section .label, section h2.title, section .intro", ".svc", ".about .wrap > *", ".step", ".compare",
+                    ".rev", ".reviews-head .score", ".faq details", ".info .wrap > div", ".stats .wrap > div", ".cta .wrap > *"];
+    const stagger = new Map();
+    if (!reduce) {
+      document.documentElement.classList.add("js");
+      document.querySelectorAll(groups.join(",")).forEach((el) => {
+        const parent = el.parentElement;
+        const i = stagger.get(parent) || 0;
+        stagger.set(parent, i + 1);
+        el.classList.add("reveal");
+        el.style.setProperty("--d", Math.min(i, 5) * 0.08 + "s");
+      });
+    }
+    const count = (el) => {
+      const end = +el.dataset.count, suffix = el.dataset.suffix || "", t0 = performance.now(), dur = 1400;
+      const tick = (t) => {
+        const k = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(end * eased).toLocaleString() + suffix;
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      reduce ? (el.textContent = end.toLocaleString() + suffix) : requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        e.target.querySelectorAll("[data-count]").forEach(count);
+        if (e.target.matches("[data-count]")) count(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal, .stats .wrap > div").forEach((el) => io.observe(el));
+  })();
+
+  // Where the form sends leads. Same server by default; set to the hosted lead catcher's URL when deployed.
+  const LEAD_URL = "https://leads.2-31-84-42.sslip.io/lead";
+  const form = document.getElementById("quote-form"), msg = document.getElementById("msg"), btn = document.getElementById("send");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.className = "msg";
+    const data = Object.fromEntries(new FormData(form));
+    if (!data.name.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
+      msg.textContent = "Please add your name and a valid email."; msg.className = "msg err"; return;
+    }
+    btn.disabled = true; btn.textContent = "Sending...";
+    try {
+      const r = await fetch(LEAD_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      const out = await r.json();
+      if (!out.ok) throw new Error(out.error);
+      form.reset();
+      msg.textContent = "Request received. Check your email for a confirmation; we'll call you shortly.";
+      msg.className = "msg ok";
+    } catch (err) {
+      msg.textContent = err.message || "Something went wrong. Please call (555) 014-2290.";
+      msg.className = "msg err";
+    } finally {
+      btn.disabled = false; btn.textContent = "Send request";
+    }
+  });
+</script>
+</body>
+</html>
